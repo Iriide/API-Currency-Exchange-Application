@@ -6,25 +6,12 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.net.MalformedURLException;
+import java.util.*;
 
 public class APIRequest {
-    /*
-    *   This class is responsible for connecting to the API and parsing the response.
-    * @param host - API host
-    * @param input_currency - currency codes to convert
-    * @param amount - amount of money to convert
-    * @param mid - mid value of the currency
-    * @param inline - response from the API
-    * @param currencies - object of the Currencies class - it is used to check if the currency code is valid
-     */
     static String host = "http://api.nbp.pl/api/exchangerates/rates/a";
-    static String[] input_currency = new String[]{};
-    static Double amount = 0.0;
-    Map<String, Double> mid = new HashMap<String, Double>();
+    static List<Currency> input_currency = new ArrayList<>();
     String inline;
     static Currencies currencies = new Currencies();
 
@@ -40,26 +27,38 @@ public class APIRequest {
         System.out.println("Enter currency codes separated by comma:");
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
-        input_currency = input.split(",");
-        System.out.println("Enter the amount of money to convert:");
-        amount = Double.parseDouble(scanner.nextLine());
-        scanner.close();
-    }
-    public String createQuarry(int index) {
-        for(String currency : input_currency) {
+        String[] input_ = input.split(",");
+
+        for(String currency : input_) {
             if(!currencies.isCurrencyCode(currency.toUpperCase())) {
                 System.out.println("Invalid currency code: " + currency);
                 System.exit(1);
             }
         }
 
-        String quarry = String.format("%s/%s/?format=json", host, this.input_currency[index].toLowerCase());
-        System.out.println(quarry);
-        return quarry;
+        for(String currency : input_) {
+            Currency currency_ = new Currency();
+            currency_.setCode(currency.toUpperCase());
+            input_currency.add(currency_);
+        }
+
+        System.out.println("Enter the amount of money to convert:");
+        input_currency.get(0).setAmount(Double.parseDouble(scanner.nextLine()));
+        scanner.close();
+    }
+    public void createQuarry(Currency currency) throws MalformedURLException {
+        if(Objects.equals(currency.getCode(), "PLN")) {
+            return;
+        }
+        String quarry = String.format("%s/%s/?format=json", host, currency.getCode().toLowerCase());
+        currency.setQuarry(quarry);
     }
 
-    public void connect(URL url) throws IOException {
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+    public void connect(Currency currency) throws IOException {
+        if(currency.getQuarry() == null) {
+            return;
+        }
+        HttpURLConnection conn = (HttpURLConnection) currency.getQuarry().openConnection();
         conn.setRequestMethod("GET");
         conn.connect();
 
@@ -69,7 +68,7 @@ public class APIRequest {
             throw new RuntimeException("HttpResponseCode: " + responseCode);
         }
         else {
-            Scanner scanner = new Scanner(url.openStream());
+            Scanner scanner = new Scanner(currency.getQuarry().openStream());
             while(scanner.hasNext()) {
                 this.inline += scanner.nextLine();
             }
@@ -78,26 +77,44 @@ public class APIRequest {
         conn.disconnect();
     }
 
-    public void parse() throws ParseException {
+    public void parse(Currency currency) throws ParseException {
         JSONParser parse = new JSONParser();
         JSONObject data_obj = (JSONObject) parse.parse(this.inline);
         JSONArray rates = (JSONArray) data_obj.get("rates");
-        for(int i = 0; i < rates.size(); i++) {
-            JSONObject rate = (JSONObject) rates.get(i);
+
+        for (Object o : rates) {
+            JSONObject rate = (JSONObject) o;
             Double mid = (Double) rate.get("mid");
-            String code = (String) data_obj.get("code");
-            this.mid.put(code, mid);
+            currency.setMid(mid);
         }
+
+    }
+
+    public void calculateExchangeRate(){
+        Double rate = input_currency.get(0).getMid() / input_currency.get(1).getMid();
+        input_currency.get(1).setAmount(input_currency.get(0).getAmount() * rate);
+    }
+
+    public void printResult(){
+        for(Currency currency : input_currency) {
+            System.out.printf("%s: %.2f%n", currency.getCode(), currency.getAmount());
+        }
+
+        System.out.printf("1.00 %s = %.2f %s%n", input_currency.get(0).getCode(), input_currency.get(0).getMid() / input_currency.get(1).getMid(), input_currency.get(1).getCode());
     }
 
     public void main(String[] args) throws Exception {
         getInput();
-        URL url_from = new URL(createQuarry(0));
-        URL url_to = new URL(createQuarry(1));
-        connect(url_from);
-        parse();
-        connect(url_to);
-        parse();
+        for(Currency currency : input_currency) {
+            if(Objects.equals(currency.getCode(), "PLN")) {
+                continue;
+            }
+            createQuarry(currency);
+            connect(currency);
+            parse(currency);
+        }
+        calculateExchangeRate();
+        printResult();
     }
 
 
