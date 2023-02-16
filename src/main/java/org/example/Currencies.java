@@ -33,6 +33,8 @@ public class Currencies {
                 String code = fields[2];
                 codeList.add(code);
         }
+        reader.close();
+        codeList.sort(String::compareTo);
     }
 
     boolean isCurrencyCode(String code) {

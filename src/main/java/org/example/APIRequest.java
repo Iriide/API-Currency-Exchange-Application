@@ -14,12 +14,18 @@ import java.util.Scanner;
 public class APIRequest {
     /*
     *   This class is responsible for connecting to the API and parsing the response.
+    * @param host - API host
+    * @param input_currency - currency codes to convert
+    * @param amount - amount of money to convert
+    * @param mid - mid value of the currency
+    * @param inline - response from the API
+    * @param currencies - object of the Currencies class - it is used to check if the currency code is valid
      */
     static String host = "http://api.nbp.pl/api/exchangerates/rates/a";
     static String[] input_currency = new String[]{};
     static Double amount = 0.0;
     Map<String, Double> mid = new HashMap<String, Double>();
-    String inline = "";
+    String inline;
     static Currencies currencies = new Currencies();
 
     public APIRequest() {
@@ -30,14 +36,13 @@ public class APIRequest {
         }
     }
 
-    public static void getInput() {
-        // input currency codes to the class variable
+    public void getInput() {
         System.out.println("Enter currency codes separated by comma:");
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
         input_currency = input.split(",");
         System.out.println("Enter the amount of money to convert:");
-        Double amount = Double.parseDouble(scanner.nextLine());
+        amount = Double.parseDouble(scanner.nextLine());
         scanner.close();
     }
     public String createQuarry(int index) {
