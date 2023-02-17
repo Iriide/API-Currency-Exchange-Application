@@ -10,12 +10,13 @@ import java.net.MalformedURLException;
 import java.util.*;
 
 public class APIRequest {
-    static String host = "http://api.nbp.pl/api/exchangerates/rates/a";
+    static String host = "http://api.nbp.pl/api/exchangerates/rates/";
     static List<Currency> input_currency = new ArrayList<>();
     String inline;
-    static Currencies currencies = new Currencies();
+    static CurrencyList currencyList;
 
     public APIRequest() {
+        currencyList = new CurrencyList();
         try {
             this.main(null);
         } catch (Exception e) {
@@ -30,7 +31,7 @@ public class APIRequest {
         String[] input_ = input.split(",");
 
         for(String currency : input_) {
-            if(!currencies.isCurrencyCode(currency.toUpperCase())) {
+            if(!currencyList.isCurrencyCode(currency.toUpperCase()) && !Objects.equals(currency, "PLN")) {
                 System.out.println("Invalid currency code: " + currency);
                 System.exit(1);
             }
@@ -50,8 +51,9 @@ public class APIRequest {
         if(Objects.equals(currency.getCode(), "PLN")) {
             return;
         }
-        String quarry = String.format("%s/%s/?format=json", host, currency.getCode().toLowerCase());
+        String quarry = String.format("%s%s/%s/?format=json", host, currencyList.getTableId(currency.getCode()), currency.getCode().toLowerCase());
         currency.setQuarry(quarry);
+        System.out.println(quarry);
     }
 
     public void connect(Currency currency) throws IOException {
