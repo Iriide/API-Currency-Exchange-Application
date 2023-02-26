@@ -1,5 +1,10 @@
 package org.example;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -9,12 +14,14 @@ import java.net.URL;
 import java.util.*;
 
 public class CurrencyList {
-    private static Map<String, String> codeList = new HashMap<>();
+    private static final Map<String, String> codeList = new HashMap<>();
+    private static final ObservableList<String> codeAndName = FXCollections.observableArrayList();
     String url;
 
     CurrencyList() {
         try {
             url = "http://api.nbp.pl/api/exchangerates/tables/";
+            codeAndName.add("PLN - złoty polski");
             readCurrencyList("a");
             readCurrencyList("b");
         } catch (Exception e) {
@@ -50,15 +57,20 @@ public class CurrencyList {
         for (Object o : rates) {
             JSONObject rate = (JSONObject) o;
             String code = (String) rate.get("code");
+            String name = (String) rate.get("currency");
             codeList.put(code, tableid);
+            codeAndName.add(String.format("%s - %s", code, name));
         }
-
+        codeAndName.sort(Comparator.naturalOrder());
     }
 
     boolean isCurrencyCode(String code) {
-        return this.codeList.containsKey(code);
+        return codeList.containsKey(code);
     }
     String getTableId(String code) {
-        return this.codeList.get(code);
+        return codeList.get(code);
+    }
+    static ObservableList<String> getCodeAndName() {
+        return codeAndName;
     }
 }
