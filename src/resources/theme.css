@@ -1,0 +1,41 @@
+/* This file is used to override the default styles of the application */
+.my-text-area .content {
+    -fx-background-color: white ;
+}
+
+.my-text-area .content {
+    -fx-background-color: white ;
+}
+.root {
+    -fx-background-color: white;
+}
+
+.text-field {
+    -fx-background-color: white;
+    -fx-border-color: #6e6e6e;
+    -fx-border-width: 1px;
+    -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;
+}
+
+.text-field:focused {
+    -fx-background-color: white;
+    -fx-border-color: #6e6e6e;
+    -fx-effect: innershadow(three-pass-box, #c2dbfd, 30, 0, 0, 0);
+}
+
+.label {
+    -fx-text-fill: black;
+    -fx-font-size: 14px;
+    -fx-font-family: "Helvetca";
+}
+.list-cell:filled:selected:focused, .list-cell:filled:selected {
+    /* 3:, 4: */
+    -fx-background-color: linear-gradient(#a1c7fa 0%, #c2dbfd 25%, #d1e3fa 75%, #deeaf8 100%);
+    -fx-text-fill: black; /* 5 */
+}
+.list-cell { -fx-text-fill: black; /* 5 */ }
+.list-cell:odd { -fx-background-color: white; /* 1 */ }
+.list-cell:even { -fx-background-color: #e1e1e1; /* for information */ }
+.list-cell:filled:hover {
+    -fx-background-color: linear-gradient(#a6a4a4 0%, #afaeae 25%, #d5d4d4 75%, #d3d3d3 100%);
+}

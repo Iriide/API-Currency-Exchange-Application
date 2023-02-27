@@ -4,10 +4,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Currency {
-    String code = "";
-    URL quarry = null;
-    Double amount = 0.0;
-    Double mid = 1.0;
+    private String code = "";
+    private URL quarry = null;
+    private Double amount = 0.0;
+    private Double mid = 1.0;
 
 
     public Currency() {}

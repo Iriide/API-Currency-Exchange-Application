@@ -1,11 +1,12 @@
 package org.example;
+
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
-
-import javax.swing.*;
+import java.io.File;
 
 public class GUI extends Application{
     APIRequest apiRequest = new APIRequest();
@@ -21,6 +22,7 @@ public class GUI extends Application{
         TextField tf1=new TextField("0.00");
         TextField tf2=new TextField("0.00");
         Label tf3=new Label();
+        final Pane spring = new Pane();
         ListView<String> listView1 = new ListView<>(CurrencyList.getCodeAndName());
         ListView<String> listView2 = new ListView<>(CurrencyList.getCodeAndName());
         UpdateValues updateValues = new UpdateValues(tf1, tf2, tf3, listView1, listView2, apiRequest);
@@ -30,15 +32,57 @@ public class GUI extends Application{
         listView1.getSelectionModel().selectedItemProperty().addListener(new LVListener(listView1, updateValues, false));
         listView2.getSelectionModel().selectedItemProperty().addListener(new LVListener(listView2, updateValues, true));
 
+        VBox vBox = new VBox();
+        vBox.setSpacing(10);
+        vBox.setPadding(new Insets(10, 10, 10, 10));
 
+        VBox subVBox1 = new VBox();
+        subVBox1.setSpacing(10);
+        subVBox1.setPadding(new Insets(10, 10, 10, 10));
+        subVBox1.getChildren().addAll(send, tf1);
 
-        GridPane root = new GridPane();
-        root.addRow(0, send, tf1, listView1);
-        root.addRow(1, recieve, tf2, listView2);
-        root.addRow(2, tf3);
-        Scene scene=new Scene(root,700,500);
+        VBox subVBox2 = new VBox();
+        subVBox2.setSpacing(10);
+        subVBox2.setPadding(new Insets(10, 10, 10, 10));
+        subVBox2.getChildren().addAll(recieve, tf2);
+
+        HBox hBox1 = new HBox();
+        hBox1.setSpacing(10);
+        hBox1.setPrefSize(500, 200);
+        hBox1.getChildren().addAll(subVBox1, listView1);
+        HBox hBox2 = new HBox();
+        hBox2.setSpacing(10);
+        hBox2.setPrefSize(500, 200);
+        hBox2.getChildren().addAll(subVBox2, listView2);
+        HBox hBox3 = new HBox();
+        hBox3.setSpacing(10);
+        hBox3.setPrefSize(100, 50);
+        hBox3.getChildren().addAll(tf3);
+
+        // Set a fixed width for the ListView HBox
+        HBox.setHgrow(tf1, Priority.ALWAYS);
+        HBox.setHgrow(tf2, Priority.ALWAYS);
+        tf1.setPrefWidth(200);
+        tf2.setPrefWidth(200);
+        HBox.setHgrow(send, Priority.ALWAYS);
+        HBox.setHgrow(recieve, Priority.ALWAYS);
+        send.setPrefWidth(200);
+        recieve.setPrefWidth(200);
+        HBox.setHgrow(listView1, Priority.ALWAYS);
+        HBox.setHgrow(listView2, Priority.ALWAYS);
+        listView1.setPrefWidth(300);
+        listView2.setPrefWidth(300);
+        HBox.setHgrow(tf3, Priority.ALWAYS);
+        tf3.setPrefHeight(50);
+
+        vBox.getChildren().addAll(hBox1, hBox2, hBox3);
+
+        Scene scene = new Scene(vBox, 600, 450);
+
+        File f = new File("src/resources/theme.css");
+        scene.getStylesheets().add("file:///" + f.getAbsolutePath().replace("\\", "/"));
+        primaryStage.setTitle("API Currency Converter");
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Text Field Example");
         primaryStage.show();
     }
 }

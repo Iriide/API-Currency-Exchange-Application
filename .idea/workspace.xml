@@ -4,14 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="200976c8-02a7-4783-a8fa-4b1683bb1117" name="Changes" comment="now its really working">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/GUI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/UpdateValues.java" afterDir="false" />
+    <list default="true" id="200976c8-02a7-4783-a8fa-4b1683bb1117" name="Changes" comment="Working version without visuals">
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/APIRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/APIRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Currency.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Currency.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/CurrencyList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/CurrencyList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/GUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/list-one.csv" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,17 +42,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\asiaw\Desktop\API\RemitlyAPI\Remitly\src\org\example" />
+      <recent name="C:\Users\asiaw\Desktop\API\RemitlyAPI\Remitly\src" />
+      <recent name="C:\Users\asiaw\Desktop\API\RemitlyAPI\Remitly\src\example\org" />
+      <recent name="C:\Users\asiaw\Desktop\API\RemitlyAPI\Remitly\src\example" />
+      <recent name="C:\Users\asiaw\Desktop\API\RemitlyAPI\Remitly\src\resources" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.Main" />
@@ -80,7 +92,8 @@
       <option name="presentableId" value="Default" />
       <updated>1676560522346</updated>
       <workItem from="1676560523587" duration="32287000" />
-      <workItem from="1677428739516" duration="5946000" />
+      <workItem from="1677428739516" duration="8060000" />
+      <workItem from="1677495216957" duration="10916000" />
     </task>
     <task id="LOCAL-00001" summary="some improvement">
       <created>1676569997371</created>
@@ -124,7 +137,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676593296304</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Working version without visuals">
+      <created>1677435445760</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1677435445760</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -145,7 +165,8 @@
     <MESSAGE value="some improvement" />
     <MESSAGE value="now its working" />
     <MESSAGE value="now its really working" />
-    <option name="LAST_COMMIT_MESSAGE" value="now its really working" />
+    <MESSAGE value="Working version without visuals" />
+    <option name="LAST_COMMIT_MESSAGE" value="Working version without visuals" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

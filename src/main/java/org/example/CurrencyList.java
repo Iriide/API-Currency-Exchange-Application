@@ -29,7 +29,7 @@ public class CurrencyList {
         }
     }
 
-    public void readCurrencyList(String tableid) throws Exception {
+    private void readCurrencyList(String tableid) throws Exception {
         URL url_ = new URL(String.format("%s/%s/?format=json", url, tableid));
         HttpURLConnection conn = (HttpURLConnection) url_.openConnection();
         conn.setRequestMethod("GET");

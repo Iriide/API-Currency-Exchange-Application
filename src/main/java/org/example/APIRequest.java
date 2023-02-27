@@ -19,7 +19,7 @@ public class APIRequest {
         currencyList = new CurrencyList();
     }
 
-    public void getInput(String cur1, String cur2, Double amnt1) {
+    private  void getInput(String cur1, String cur2, Double amnt1) {
         Currency currency1 = new Currency();
         currency1.setCode(cur1.split(" ")[0]);
         currency1.setAmount(amnt1);
@@ -29,7 +29,7 @@ public class APIRequest {
         input_currency.add(currency1);
         input_currency.add(currency2);
     }
-    public void createQuarry(Currency currency) throws MalformedURLException {
+    private  void createQuarry(Currency currency) throws MalformedURLException {
         if(Objects.equals(currency.getCode(), "PLN")) {
             return;
         }
@@ -37,7 +37,7 @@ public class APIRequest {
         currency.setQuarry(quarry);
     }
 
-    public void connect(Currency currency) throws IOException {
+    private  void connect(Currency currency) throws IOException {
         if(currency.getQuarry() == null) {
             return;
         }
@@ -60,7 +60,7 @@ public class APIRequest {
         conn.disconnect();
     }
 
-    public void parse(Currency currency) throws ParseException {
+    private  void parse(Currency currency) throws ParseException {
         JSONParser parse = new JSONParser();
         JSONObject data_obj = (JSONObject) parse.parse(this.inline);
         JSONArray rates = (JSONArray) data_obj.get("rates");
@@ -73,11 +73,11 @@ public class APIRequest {
 
     }
 
-    public Double calculateExchangeRate(){
+    private  Double calculateExchangeRate(){
         return input_currency.get(0).getMid() / input_currency.get(1).getMid() * input_currency.get(0).getAmount();
     }
 
-    public String printResult(){
+    private  String printResult(){
         return String.format("1.00 %s = %.2f %s%n", input_currency.get(0).getCode(), input_currency.get(0).getMid() / input_currency.get(1).getMid(), input_currency.get(1).getCode());
     }
 
