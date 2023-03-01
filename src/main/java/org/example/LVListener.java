@@ -1,12 +1,19 @@
-package org.example;
+package main.java.org.example;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.ListView;
 
-import java.util.concurrent.CopyOnWriteArrayList;
 
 public class LVListener implements ChangeListener<String> {
+    /**
+     * Class for getting the values from the textfields and listviews and updating the values after a change
+     * @param updateValues - UpdateValues object used to update the values in the textfields
+     *
+     * @param chooseListener - boolean used to choose which listener is used (we have two listeners for the listviews,
+     *                         and they need to change the values of the opposite textfield)
+     * @param lv - ListView<String> object the listener is attached to
+     */
     UpdateValues updateValues;
     Boolean chooseListener;
     ListView<String> lv;

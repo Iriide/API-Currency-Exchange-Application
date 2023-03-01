@@ -3,7 +3,7 @@
     <groupId>org.example</groupId>
     <artifactId>com.example</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>RemitlyAPI</name>
+    <name>CurrencyExchangeAPI</name>
 
 
     <properties>
@@ -76,7 +76,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.2.1</version>
                 <configuration>
-                    <mainClass>org.example.Main</mainClass>
+                    <mainClass>main.java.org.example.Main</mainClass>
                 </configuration>
             </plugin>
             <plugin>

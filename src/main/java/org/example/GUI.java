@@ -1,4 +1,4 @@
-package org.example;
+package main.java.org.example;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -9,6 +9,10 @@ import javafx.stage.Stage;
 import java.io.File;
 
 public class GUI extends Application{
+    /**
+     * This is the main class of the program. It creates the GUI and the listeners for the GUI.
+     * @param APIRequest is the object that is used to make the API requests. It also calculates the exchange rates and converts the values.
+     */
     APIRequest apiRequest = new APIRequest();
     public static void main(String[] args){
         launch(args);
@@ -16,7 +20,11 @@ public class GUI extends Application{
 
     @Override
     public void start(Stage primaryStage){
+        /*
+        This method creates the GUI and the listeners for the GUI.
+         */
 
+        // Create GUI elements
         Label send=new Label("You send:");
         Label recieve = new Label("They recieve:");
         TextField tf1=new TextField("0.00");
@@ -25,13 +33,17 @@ public class GUI extends Application{
         final Pane spring = new Pane();
         ListView<String> listView1 = new ListView<>(CurrencyList.getCodeAndName());
         ListView<String> listView2 = new ListView<>(CurrencyList.getCodeAndName());
+        //Create UpdateValues object that is going to be used in the listeners
+        //this object gets values from the GUI elements, calculates and updates the values after a change
         UpdateValues updateValues = new UpdateValues(tf1, tf2, tf3, listView1, listView2, apiRequest);
 
+        // Create listeners for the GUI elements, the listeners are in the LVListener and TFListener classes
         tf1.textProperty().addListener(new TFListener(tf1, updateValues, true));
         tf2.textProperty().addListener(new TFListener(tf2, updateValues, false));
         listView1.getSelectionModel().selectedItemProperty().addListener(new LVListener(listView1, updateValues, false));
         listView2.getSelectionModel().selectedItemProperty().addListener(new LVListener(listView2, updateValues, true));
 
+        // Create vBoxes and hBoxes for the GUI layout
         VBox vBox = new VBox();
         vBox.setSpacing(10);
         vBox.setPadding(new Insets(10, 10, 10, 10));
@@ -77,10 +89,11 @@ public class GUI extends Application{
 
         vBox.getChildren().addAll(hBox1, hBox2, hBox3);
 
-        Scene scene = new Scene(vBox, 600, 450);
-
+        // Set the scene and the CSS file
+        Scene scene = new Scene(vBox, 700, 450);
         File f = new File("src/resources/theme.css");
         scene.getStylesheets().add("file:///" + f.getAbsolutePath().replace("\\", "/"));
+        primaryStage.setResizable(false);
         primaryStage.setTitle("API Currency Converter");
         primaryStage.setScene(scene);
         primaryStage.show();

@@ -1,9 +1,16 @@
-package org.example;
+package main.java.org.example;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Currency {
+    /*
+     * Class for storing currency data,it only contains the getters and setters
+     * @param code - String with currency code
+     * @param quarry - URL with API request URL
+     * @param amount - Double with amount of currency
+     * @param mid - Double with currency exchange rate
+     */
     private String code = "";
     private URL quarry = null;
     private Double amount = 0.0;

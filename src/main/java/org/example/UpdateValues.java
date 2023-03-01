@@ -1,13 +1,20 @@
-package org.example;
+package main.java.org.example;
 
 import javafx.scene.control.ListView;
 
 import javafx.scene.control.*;
 
-import javax.swing.*;
-import java.util.Arrays;
-
 public class UpdateValues {
+    /*
+     * Class for updating values in GUI
+     * @param isUpdating - Boolean used to prevent infinite loop of triggering listeners
+     * @param tf1 - TextField with amount of currency 1
+     * @param tf2 - TextField with amount of currency 2
+     * @param tf3 - Label with exchange rate
+     * @param listView1 - ListView with currency 1
+     * @param listView2 - ListView with currency 2
+     * @param apiRequest - APIRequest object
+     */
     Boolean isUpdating = false;
     private TextField tf1;
     private TextField tf2;
@@ -25,10 +32,13 @@ public class UpdateValues {
         this.apiRequest = apiRequest;
     }
     public void update(Boolean chooseListener) throws Exception {
+        //prevent infinite loop of triggering listeners
         isUpdating = true;
-        if(listView1.getSelectionModel().getSelectedItem() == null || listView2.getSelectionModel().getSelectedItem() == null) {
+        //check if all fields are filled
+        if(listView1.getSelectionModel().getSelectedItem() == null || listView2.getSelectionModel().getSelectedItem() == null || tf1.getText().equals("") || tf2.getText().equals("")) {
             return;
         }
+        //check which listener triggered update and execute the update
         if(chooseListener) {
             String[] result = apiRequest.calculate(listView1.getSelectionModel().getSelectedItem(), listView2.getSelectionModel().getSelectedItem(), Double.parseDouble(tf1.getText()));
             tf2.setText(result[0]);
