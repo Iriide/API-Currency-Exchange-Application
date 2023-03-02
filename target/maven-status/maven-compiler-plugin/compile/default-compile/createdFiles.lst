@@ -1,0 +1,8 @@
+main\java\org\example\Main.class
+main\java\org\example\GUI.class
+main\java\org\example\Currency.class
+main\java\org\example\TFListener.class
+main\java\org\example\LVListener.class
+main\java\org\example\UpdateValues.class
+main\java\org\example\CurrencyList.class
+main\java\org\example\APIRequest.class
