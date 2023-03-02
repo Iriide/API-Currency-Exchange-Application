@@ -28,7 +28,7 @@
     -fx-font-size: 14px;
     -fx-font-family: "Helvetca";
 }
-.list-cell:filled:selected:focused, .list-cell:filled:selected {
+.list-cell:filled:hover {
     /* 3:, 4: */
     -fx-background-color: linear-gradient(#a1c7fa 0%, #c2dbfd 25%, #d1e3fa 75%, #deeaf8 100%);
     -fx-text-fill: black; /* 5 */
@@ -36,6 +36,4 @@
 .list-cell { -fx-text-fill: black; /* 5 */ }
 .list-cell:odd { -fx-background-color: white; /* 1 */ }
 .list-cell:even { -fx-background-color: #e1e1e1; /* for information */ }
-.list-cell:filled:hover {
-    -fx-background-color: linear-gradient(#a6a4a4 0%, #afaeae 25%, #d5d4d4 75%, #d3d3d3 100%);
-}
+

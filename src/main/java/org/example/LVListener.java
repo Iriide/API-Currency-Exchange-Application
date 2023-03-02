@@ -2,6 +2,7 @@ package main.java.org.example;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 
 
@@ -12,12 +13,12 @@ public class LVListener implements ChangeListener<String> {
      *
      * @param chooseListener - boolean used to choose which listener is used (we have two listeners for the listviews,
      *                         and they need to change the values of the opposite textfield)
-     * @param lv - ListView<String> object the listener is attached to
+     * @param lv - ComboBox<String> object the listener is attached to
      */
     UpdateValues updateValues;
     Boolean chooseListener;
-    ListView<String> lv;
-    public LVListener(ListView<String> listView, UpdateValues updateValues, boolean chooseListener){
+    ComboBox<String> lv;
+    public LVListener(ComboBox<String> listView, UpdateValues updateValues, boolean chooseListener){
         this.lv = listView;
         this.updateValues = updateValues;
         this.chooseListener = chooseListener;

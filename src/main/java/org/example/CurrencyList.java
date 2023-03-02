@@ -23,11 +23,11 @@ public class CurrencyList {
     CurrencyList() {
         try {
             url = "http://api.nbp.pl/api/exchangerates/tables/";
-            // We need to add PLN to the list because it's not in the API response
-            codeAndName.add("PLN - złoty polski");
             // Adding currencies from both tables
             readCurrencyList("a");
             readCurrencyList("b");
+            // We need to add PLN to the list because it's not in the API response
+            codeAndName.add(0, "PLN - złoty polski");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
