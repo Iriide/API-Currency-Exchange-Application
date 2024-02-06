@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="200976c8-02a7-4783-a8fa-4b1683bb1117" name="Changes" comment="layout changes">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="200976c8-02a7-4783-a8fa-4b1683bb1117" name="Changes" comment=".jar file">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -97,7 +96,10 @@
       <workItem from="1676560523587" duration="32287000" />
       <workItem from="1677428739516" duration="8060000" />
       <workItem from="1677495216957" duration="12564000" />
-      <workItem from="1677688779987" duration="5605000" />
+      <workItem from="1677688779987" duration="5886000" />
+      <workItem from="1677852465992" duration="626000" />
+      <workItem from="1678818707428" duration="39000" />
+      <workItem from="1680357290113" duration="16000" />
     </task>
     <task id="LOCAL-00001" summary="some improvement">
       <created>1676569997371</created>
@@ -176,7 +178,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677774330878</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary=".jar file">
+      <created>1677775142801</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1677775142801</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -201,7 +210,8 @@
     <MESSAGE value="Working version with visuals" />
     <MESSAGE value="Adding comments" />
     <MESSAGE value="layout changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="layout changes" />
+    <MESSAGE value=".jar file" />
+    <option name="LAST_COMMIT_MESSAGE" value=".jar file" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
